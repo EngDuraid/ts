@@ -4,6 +4,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/HomeView.vue";
 import About from "../views/AboutView.vue";
 import EventDetails from "../components/events/EventDetails.vue";
+import TodoView from "../views/TodoView.vue";
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
@@ -20,6 +21,11 @@ const routes: RouteRecordRaw[] = [
     name: "EventDetails",
     component: EventDetails,
     props: true,
+  },
+  {
+    path: "/todo",
+    name: "Todo",
+    component: TodoView,
   },
 ];
 
