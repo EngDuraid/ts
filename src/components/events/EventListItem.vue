@@ -1,23 +1,27 @@
 <template>
   <div class="event-item">
     <router-link :to="'/events/' + event.id">
-      {{ event.name }}
+      {{ eventName }}
     </router-link>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent, PropType, ref } from "vue";
 import { Event } from "../../models/Event";
 export default defineComponent({
   name: "EventListItem",
   props: {
     event: {
-      type: Object as () => Event,
+      // type: Object as () => Event, //old version to define type
+      type: Object as PropType<Event>,
       required: true,
     },
   },
-  setup() {
-    return {};
+  setup(props) {
+    const eventName = computed(() => {
+      return props.event.name.toUpperCase();
+    });
+    return { eventName };
   },
 });
 </script>
