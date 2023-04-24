@@ -15,8 +15,9 @@ export default defineComponent({
     const store = TodoStore();
 
     function addTodo() {
-      store.addTodo(todoLabel.value);
-      console.log(todoLabel.value);
+      if (todoLabel.value === "") return;
+      store.addTodo(todoLabel.value.trim());
+      todoLabel.value = "";
     }
     return { todoLabel, addTodo };
   },

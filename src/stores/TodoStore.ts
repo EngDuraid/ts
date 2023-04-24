@@ -16,11 +16,14 @@ export const TodoStore = defineStore({
       };
       this.todos.push(todo);
     },
-    markTodoCompleted(id: number) {
+    toggleCompleted(id: number) {
       const todo = this.todos.find((todo) => todo.id === id);
       if (todo) {
-        todo.completed = true;
+        todo.completed = !todo.completed;
       }
+    },
+    getTodos() {
+      return this.todos;
     },
   },
 });
