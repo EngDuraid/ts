@@ -6,7 +6,7 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, PropType, ref } from "vue";
+import { computed, defineComponent, PropType } from "vue";
 import { Event } from "../../models/Event";
 export default defineComponent({
   name: "EventListItem",
