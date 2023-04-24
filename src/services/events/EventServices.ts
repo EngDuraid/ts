@@ -1,5 +1,5 @@
 import { apiCLient } from "../apiClient";
-// import { Event } from "../../models/Event";
+import { ApiResponse, Event } from "../../models/Event";
 
 // //using apiClient to get all events
 // export const getAllEvents: Promise<Event[]> = apiCLient.get("/events");
@@ -14,7 +14,7 @@ export default {
   getAllEvents(): Promise<Event[]> {
     return apiCLient.get("/events");
   },
-  getEventById(id: number): Promise<Event> {
+  getEventById(id: number): Promise<ApiResponse<Event>> {
     return apiCLient.get(`/events/${id}`);
   },
 };

@@ -10,8 +10,8 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
-import { Event } from "@/models/Event";
-import { getEvent } from "@/services/events/getEvent";
+import { ApiResponse, Event, ResponseStatus } from "@/models/Event";
+// import { getEvent } from "@/services/events/getEvent";
 import EventServices from "@/services/events/EventServices";
 export default defineComponent({
   name: "EventDetails",
@@ -25,10 +25,14 @@ export default defineComponent({
     const event = ref<Event | null>(null);
     onMounted(async () => {
       const intId = parseInt(props.id);
-      //using EventService to get event by intId
-      console.log(await EventServices.getEventById(intId));
-      const res = await EventServices.getEventById(intId);
-      event.value = res.data as Event;
+      try {
+        const res: ApiResponse<Event> = await EventServices.getEventById(intId);
+        if (res.status === ResponseStatus.OK) {
+          event.value = res.data;
+        }
+      } catch (err) {
+        console.log(err);
+      }
     });
     return { event };
   },
