@@ -14,7 +14,9 @@ import { ref, onMounted } from "vue";
 import EventListItem from "./EventListItem.vue";
 import { Event } from "../../models/Event";
 
-import { getEvents } from "../../services/events/getEvents";
+// import { getEvents } from "../../services/events/getEvents";
+import EventServices from "@/services/events/EventServices";
+
 export default defineComponent({
   name: "EventList",
   props: {
@@ -27,7 +29,14 @@ export default defineComponent({
     const events = ref<Event[]>([]);
 
     onMounted(async () => {
-      events.value = await getEvents();
+      try{
+        const res = await EventServices.getAllEvents();
+        events.value = res.data;
+      }
+      catch(err){
+        console.log(err);
+      }
+      // events.value = await getEvents();
     });
 
     return { events };
