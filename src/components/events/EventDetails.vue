@@ -16,15 +16,15 @@ export default defineComponent({
   name: "EventDetails",
   props: {
     id: {
-      type: Number,
+      type: String,
       required: true,
     },
   },
   setup(props) {
     const event = ref<Event | null>(null);
-    console.log(props.id);
     onMounted(async () => {
-      event.value = await getEvent(props.id);
+      const intId = parseInt(props.id);
+      event.value = await getEvent(intId);
     });
     return { event };
   },
