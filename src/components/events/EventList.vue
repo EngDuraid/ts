@@ -41,7 +41,7 @@ export default defineComponent({
   margin: 20px auto;
   padding: 10px;
   width: 300px;
-  background: #ebe7e7;
+  background: #f4f5f6;
   color: #333;
 }
 </style>

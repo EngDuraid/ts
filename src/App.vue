@@ -1,15 +1,18 @@
 <template>
-  <EventList msg="Welcome to Your Vue.js + TypeScript App" />
+  <div id="app">
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </nav>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import EventList from "./components/events/EventList.vue";
 export default defineComponent({
   name: "App",
-  components: {
-    EventList,
-  },
+  components: {},
 });
 </script>
 
@@ -21,5 +24,9 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+a {
+  color: #1e724c;
+  text-decoration: none;
 }
 </style>

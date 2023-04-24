@@ -1,5 +1,9 @@
 <template>
-  <div>{{ event.name }}</div>
+  <div class="event-item">
+    <router-link :to="'/events/' + event.id">
+      {{ event.name }}
+    </router-link>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
@@ -17,4 +21,18 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped></style>
+<style scoped>
+/* create event card */
+.event-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background: white;
+}
+</style>
