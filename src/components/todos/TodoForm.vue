@@ -1,8 +1,8 @@
 <template>
-  <div class="todo-form">
-    <input type="text" v-model="todoLabel" />
-    <button @click.stop="addTodo">Add</button>
-  </div>
+  <form @submit.prevent="addTodo" class="todo-form">
+    <input type="text" v-model="todoLabel" required />
+    <button type="submit">Add</button>
+  </form>
 </template>
 
 <script lang="ts">
@@ -24,4 +24,11 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style scoped>
+.todo-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+</style>

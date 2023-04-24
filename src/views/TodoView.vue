@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { Todo } from "@/models/Todo";
-import { computed, defineComponent, onMounted, ref, watch } from "vue";
+import { defineComponent, onMounted, ref, watch } from "vue";
 import TodoForm from "../components/todos/TodoForm.vue";
 import TodoList from "../components/todos/TodoList.vue";
 import { TodoStore } from "@/stores/TodoStore";
@@ -29,27 +29,28 @@ export default defineComponent({
     let todos = ref<Todo[]>([]);
     const store = TodoStore();
     type TodoFilter = "all" | "completed" | "uncompleted";
-    let filterType = "all";
+    let filterType = ref<TodoFilter>("all");
+
     watch(store.getTodos(), () => {
-      if (filterType === "all") getTodos();
-      if (filterType === "completed") getCompleted();
-      if (filterType === "uncompleted") getUncompleted();
+      if (filterType.value === "all") getTodos();
+      if (filterType.value === "completed") getCompleted();
+      if (filterType.value === "uncompleted") getUncompleted();
     });
 
     onMounted(() => {
       getTodos();
     });
     function getTodos() {
-      filterType = "all";
+      filterType.value = "all";
       todos.value = store.getTodos();
     }
 
     function getCompleted() {
-      filterType = "completed";
+      filterType.value = "completed";
       todos.value = store.getTodos().filter((todo) => todo.completed);
     }
     function getUncompleted() {
-      filterType = "uncompleted";
+      filterType.value = "uncompleted";
       todos.value = store.getTodos().filter((todo) => !todo.completed);
     }
     return { todos, getTodos, getCompleted, getUncompleted };
@@ -57,4 +58,9 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+.todo-list-view {
+  width: 400px;
+  margin: 20px auto;
+}
+</style>

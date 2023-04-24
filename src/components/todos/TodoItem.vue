@@ -1,6 +1,8 @@
 <template>
   <div v-if="todoItem" class="todo-item">
-    <span :class="{ complete: todoItem.completed }">{{ todoItem.label }}</span>
+    <span class="text" :class="{ complete: todoItem.completed }">{{
+      todoItem.label
+    }}</span>
     <span>
       <input
         :id="todoItem.id.toString()"
@@ -48,6 +50,10 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.todo-item .text {
+  max-width: 280px;
+  word-wrap: break-word;
 }
 .todo-item .complete {
   text-decoration: line-through;
